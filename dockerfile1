@@ -1,8 +1,21 @@
-FROM ubuntu
+only work killercoda plaform
+------------------------------
 RUN apt update && \
     apt install -y apache2 git && \
     apt clean
 RUN git clone https://github.com/Ironhack-Archive/online-clone-amazon.git /tmp/app
+RUN rm -rf /var/www/html/*
+RUN cp -r /tmp/app/* /var/www/html/
+EXPOSE 80
+CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
+
+netflix
+---------
+FROM ubuntu:22.04
+RUN apt-get update && \
+    apt-get install -y apache2 git && \
+    rm -rf /var/lib/apt/lists/*
+RUN git clone https://github.com/RAHAMSHAIK007/netflix-clone.git /tmp/app
 RUN rm -rf /var/www/html/*
 RUN cp -r /tmp/app/* /var/www/html/
 EXPOSE 80
