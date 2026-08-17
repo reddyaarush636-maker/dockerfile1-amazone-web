@@ -1,0 +1,10 @@
+FROM ubuntu:22.04
+RUN apt-get update && \
+    apt-get install -y apache2 git && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+RUN git clone https://github.com/Ironhack-Archive/online-clone-amazon.git /tmp/app
+RUN rm -rf /var/www/html/* && \
+    cp -r /tmp/app/* /var/www/html/
+EXPOSE 80
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
