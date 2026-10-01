@@ -20,3 +20,17 @@ RUN rm -rf /var/www/html/*
 RUN cp -r /tmp/app/* /var/www/html/
 EXPOSE 80
 CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
+
+navratri html code 
+----------------------------
+FROM ubuntu:22.04
+RUN apt update && \
+    apt install -y apache2 git && \
+    apt clean && \
+    rm -rf /var/lib/apt/lists/*
+RUN git clone https://github.com/reddyaarush636-maker/navratri.git /tmp/app
+RUN rm -rf /var/www/html/* && \
+    cp -r /tmp/app/* /var/www/html/ && \
+    rm -rf /tmp/app
+EXPOSE 80
+CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
